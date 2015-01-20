@@ -272,11 +272,12 @@ The plugin can be installed via the Cordova command line interface:
 
 ```sh
 cordova plugin add https://github.com/phonegap-build/PushPlugin.git
-```
+'''
 
-```For plugin with NM changes:
+###For plugin with NM changes:
+'''sh
 cordova plugin add https://github.com/nitishmehta/PushPlugin.git
-```
+'''
 
 ### Phonegap
 
