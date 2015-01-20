@@ -22,6 +22,7 @@ import java.util.Iterator;
 public class PushPlugin extends CordovaPlugin {
 	public static final String TAG = "PushPlugin";
 
+	public static final String SETECB = "setECB";
 	public static final String REGISTER = "register";
 	public static final String UNREGISTER = "unregister";
 	public static final String EXIT = "exit";
@@ -41,13 +42,92 @@ public class PushPlugin extends CordovaPlugin {
 	}
 
 	@Override
+    // public boolean execute(String action, JSONArray data, CallbackContext callbackContext) {
+
+    //     boolean result = false;
+
+    //     Log.v(TAG, "execute: action=" + action);
+
+    //     if (REGISTER.equals(action)) {
+
+    //         Log.v(TAG, "execute: data=" + data.toString());
+
+    //         try {
+
+    //             SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+    //             if(!prefs.getBoolean("registered", false)) {
+
+    //                 JSONObject jo = data.getJSONObject(0);
+
+    //                 gWebView = this.webView;
+    //                 Log.v(TAG, "execute: jo=" + jo.toString());
+
+    //                 gECB = (String) jo.get("ecb");
+    //                 gSenderID = (String) jo.get("senderID");
+
+    //                 Log.v(TAG, "execute: ECB=" + gECB + " senderID=" + gSenderID);
+    //                 if (REGISTER.equals(action)) {
+    //                 	GCMRegistrar.register(getApplicationContext(), gSenderID);
+    //                 }
+                    
+    //                 callbackContext.success();
+
+    //                 // run your one time code
+    //                 SharedPreferences.Editor editor = prefs.edit();
+    //                 editor.putBoolean("registered", true);
+    //                 editor.commit();
+    //             }
+
+    //             result = true;
+
+    //         } catch (JSONException e) {
+    //             Log.e(TAG, "execute: Got JSON Exception " + e.getMessage());
+    //             result = false;
+    //             callbackContext.error(e.getMessage());
+    //         }
+
+    //         if ( gCachedExtras != null) {
+    //             Log.v(TAG, "sending cached extras");
+    //             sendExtras(gCachedExtras);
+    //             gCachedExtras = null;
+    //         }
+
+    //     }  else if (SETECB.equals(action)) {
+    //                 Log.v(TAG, "setecb: data=" + data.toString());
+    //                 try {
+    //                     JSONObject jo = data.getJSONObject(0);
+    //                     gECB = (String) jo.get("ecb");
+    //                     gSenderID = (String) jo.get("senderID");
+    //                     result = true;
+    //                     callbackContext.success();
+    //                 } catch (JSONException e) {
+    //                     Log.e(TAG, "setectb: Got JSON Exception " + e.getMessage());
+    //                     result = false;
+    //                     callbackContext.error(e.getMessage());
+    //                 }
+    //     }  else if (UNREGISTER.equals(action)) {
+
+    //         GCMRegistrar.unregister(getApplicationContext());
+
+    //         Log.v(TAG, "UNREGISTER");
+    //         result = true;
+    //         callbackContext.success();
+    //     } else {
+    //         result = false;
+    //         Log.e(TAG, "Invalid action : " + action);
+    //         callbackContext.error("Invalid action : " + action);
+    //     }
+
+    //     return result;
+    // }	
 	public boolean execute(String action, JSONArray data, CallbackContext callbackContext) {
 
 		boolean result = false;
 
 		Log.v(TAG, "execute: action=" + action);
-
-		if (REGISTER.equals(action)) {
+		Log.v(TAG, "NM custom code implementation begins");
+		Log.v(TAG, "SETECB--"+SETECB);
+		if (REGISTER.equals(action) || SETECB.equals(action)) {
 
 			Log.v(TAG, "execute: data=" + data.toString());
 
@@ -62,7 +142,10 @@ public class PushPlugin extends CordovaPlugin {
 
 				Log.v(TAG, "execute: ECB=" + gECB + " senderID=" + gSenderID);
 
-				GCMRegistrar.register(getApplicationContext(), gSenderID);
+				if (REGISTER.equals(action)) {
+					GCMRegistrar.register(getApplicationContext(), gSenderID);	
+				}
+
 				result = true;
 				callbackContext.success();
 			} catch (JSONException e) {
