@@ -7,7 +7,7 @@ This plugin is for use with [Cordova](http://incubator.apache.org/cordova/), and
 * The Android implementation uses [Google's GCM (Google Cloud Messaging) service](http://developer.android.com/guide/google/gcm/index.html).
 * The BlackBerry 10 version  uses [blackberry push service](https://developer.blackberry.com/devzone/develop/platform_services/push_service_overview.html).
 * The iOS version is based on [Apple APNS Notifications](http://developer.apple.com/library/mac/#documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/ApplePushService/ApplePushService.html).
-* The WP8 implementation is based on [MPNS](http://msdn.microsoft.com/en-us/library/windowsphone/develop/ff402558(v=vs.105).aspx).
+* The WP8 implementation is based on [MPNSc](http://msdn.microsoft.com/en-us/library/windowsphone/develop/ff402558(v=vs.105).aspx).
 * Windows8 uses [Microsoft WNS Notifications](http://msdn.microsoft.com/en-us/library/windows/apps/hh913756.aspx).
 
 **Important** - Push notifications are intended for real devices. They are not tested for WP8 Emulator. The registration process will fail on the iOS simulator. Notifications can be made to work on the Android Emulator, however doing so requires installation of some helper libraries, as outlined [here,](http://www.androidhive.info/2012/10/android-push-notifications-using-google-cloud-messaging-gcm-php-and-mysql/) under the section titled "Installing helper libraries and setting up the Emulator".
@@ -272,6 +272,10 @@ The plugin can be installed via the Cordova command line interface:
 
 ```sh
 cordova plugin add https://github.com/phonegap-build/PushPlugin.git
+```
+
+```For plugin with NM changes:
+cordova plugin add https://github.com/nitishmehta/PushPlugin.git
 ```
 
 ### Phonegap
